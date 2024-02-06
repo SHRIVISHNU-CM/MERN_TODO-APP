@@ -2,7 +2,7 @@ const todo = require("../database/databaseSchema")
 
 module.exports.getItems = async(req,res)=>{
     const item = await todo.find()
-    res.send(item)
+    res.send(item).json(item)
 }
 
 module.exports.saveItems = (req,res)=>{
