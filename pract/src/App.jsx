@@ -44,6 +44,12 @@ function App() {
     setText(todoItems)
     setId(_id)
   }
+  function remove(todoId ,setTodo){
+    axios.delete("http://localhost:3001/api/delete/"+todoId,{todoId})
+    .then(result =>{
+      getTodoList(setTodo)
+    })
+  }
 
   useEffect(() => {
     getTodoList(setTodo);
@@ -61,7 +67,7 @@ function App() {
         </button>
       </div>
       <div className='flex justify-center items-center md:flex-wrap md:flex-row md:justify-around lg:justify-around mt-6 flex-col'>
-        {todo.map((item) => <Hello key={item._id} text={item.todoItems} updatemode = {()=>updatemode(item._id,item.todoItems)}/>)}
+        {todo.map((item) => <Hello key={item._id} text={item.todoItems} updatemode = {()=>updatemode(item._id,item.todoItems)} remove={()=>remove(item._id,setTodo)}/>)}
 
         {/* <Hello />
         <Hello />
